@@ -29,7 +29,10 @@ import {
 
 export default function Dashboard() {
 const { device, history } = useDevice();
-
+const alarmText =
+    device.data.alarmStatus === 0
+        ? "Normal"
+        : "Voltage Alarm";
 if (!device) return null;
     return (
 
@@ -101,9 +104,9 @@ if (!device) return null;
 
                         <MetricCard
                             title="Alarm"
-                            value={device.data.alarm}
+                            value={alarmText}
                             unit=""
-                            color="#dc2626"
+                            color={device.data.alarmStatus ? "#ef4444" : "#22c55e"}
                             icon={<TriangleAlert />}
                         />
 
